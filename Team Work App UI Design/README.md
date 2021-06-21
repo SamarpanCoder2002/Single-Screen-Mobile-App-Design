@@ -1,4 +1,8 @@
-# design
+### <p align="center">Team Work App UI Design Aded</p>
+
+<p align="center">
+<img src="documents/design.png" width=300 alt="design">
+</p>
 
 A new Flutter project.
 
