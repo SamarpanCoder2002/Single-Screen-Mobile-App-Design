@@ -1,6 +1,8 @@
-# design2
+### <p align="center"> Task Management App Launch Screen Design</p>
 
-A new Flutter project.
+<p align="center"> 
+<img src="documents/design.png", width=300 alt="design"/>
+</p>
 
 ## Getting Started
 
