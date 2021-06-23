@@ -1,6 +1,12 @@
-# design3
+# <p align="center"> Finance App UI Design</p>
 
-A new Flutter project.
+### <p align="center">Two UI Screen Design</p>
+
+<p align="center">
+<img src="documents/1.png" width=200>
+<img src="documents/2.png" width=200>
+<img src="documents/3.png" width=200>
+</p>
 
 ## Getting Started
 
