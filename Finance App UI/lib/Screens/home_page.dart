@@ -1,3 +1,4 @@
+import 'package:design3/Screens/order_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -394,19 +395,22 @@ class _HomePageState extends State<HomePage> {
           _bottomNavigationItems('assets/home.png'),
           _bottomNavigationItems('assets/activity.png'),
           _bottomNavigationItems('assets/trophy.png'),
-          _bottomNavigationItems('assets/setting.png'),
+          GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => OrderPage()));
+              },
+              child: _bottomNavigationItems('assets/setting.png')),
         ],
       ),
     );
   }
 
   Widget _bottomNavigationItems(String assetPath) {
-    return GestureDetector(
-      child: Image.asset(
-        assetPath,
-        width: 20.0,
-        color: Colors.black,
-      ),
+    return Image.asset(
+      assetPath,
+      width: 20.0,
+      color: Colors.black,
     );
   }
 
