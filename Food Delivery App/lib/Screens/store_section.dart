@@ -1,3 +1,4 @@
+import 'package:customer/Screens/delivery_once_and_create_subscription_screen.dart';
 import 'package:customer/Screens/food_menu.dart';
 import 'package:customer/types.dart';
 import 'package:flutter/material.dart';
@@ -79,7 +80,7 @@ class _StoreSectionState extends State<StoreSection> {
   Widget _fourthRowInformation() {
     return Container(
       margin: EdgeInsets.only(
-          left: widget.pageName == PageName.FlashSalePage?30.0:15.0,
+          left: widget.pageName == PageName.FlashSalePage ? 30.0 : 15.0,
           right: 15.0,
           top: widget.pageName == PageName.StorePage ? 0.0 : 10.0),
       child: widget.pageName == PageName.FlashSalePage
@@ -137,7 +138,10 @@ class _StoreSectionState extends State<StoreSection> {
   Widget _foodShowCaseForStore() {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (_) => FoodMenu()));
+        print(widget.pageName);
+        if (widget.pageName == PageName.StorePage)
+          Navigator.push(
+              context, MaterialPageRoute(builder: (_) => FoodMenu()));
       },
       child: Container(
         margin: EdgeInsets.only(top: 20.0, left: 15.0, right: 15.0),
@@ -156,99 +160,98 @@ class _StoreSectionState extends State<StoreSection> {
   }
 
   Widget _foodShowCaseForMenu() {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (_) => FoodMenu()));
-      },
-      child: Container(
-        margin: EdgeInsets.only(top: 20.0, left: 15.0, right: 15.0),
-        width: double.maxFinite,
-        child: Column(
-          children: [
-            for (int i = 0; i < 3; i++)
-              Padding(
-                padding: EdgeInsets.only(bottom: 20.0),
-                child: Stack(
-                  children: [
-                    Container(
-                      alignment: Alignment.centerRight,
-                      width: double.maxFinite,
-                      height: 170,
-                      margin: EdgeInsets.only(left: 40.0),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(40.0),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black26,
-                              blurRadius: 6.0,
-                              offset: Offset(2.0, 2.0),
-                            ),
-                          ]),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                              width: 45,
-                              margin: EdgeInsets.only(left: 120.0, top: 10.0),
-                              padding: EdgeInsets.only(right: 3.0, left: 3.0),
-                              alignment: Alignment.centerRight,
-                              decoration: BoxDecoration(
-                                color: Colors.green,
-                                borderRadius: BorderRadius.circular(3.0),
-                              ),
-                              child: Text(
-                                '3.4\u2605',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    backgroundColor: Colors.green),
-                              )),
-                          Container(
-                            margin: EdgeInsets.only(left: 50.0),
-                            padding:
-                                const EdgeInsets.only(top: 10.0, left: 30.0),
-                            width: 200,
-                            child: Text(
-                              'Special Dosa',
-                              style: TextStyle(fontSize: 25.0),
-                            ),
+    return Container(
+      margin: EdgeInsets.only(top: 20.0, left: 15.0, right: 15.0),
+      width: double.maxFinite,
+      child: Column(
+        children: [
+          for (int i = 0; i < 3; i++)
+            Padding(
+              padding: EdgeInsets.only(bottom: 20.0),
+              child: Stack(
+                children: [
+                  Container(
+                    alignment: Alignment.centerRight,
+                    width: double.maxFinite,
+                    height: 170,
+                    margin: EdgeInsets.only(left: 40.0),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(40.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            blurRadius: 6.0,
+                            offset: Offset(2.0, 2.0),
                           ),
-                          Container(
-                            margin: EdgeInsets.only(left: 30.0),
-                            padding:
-                                const EdgeInsets.only(top: 5.0, bottom: 11.0),
-                            width: 200,
+                        ]),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                            width: 45,
+                            margin: EdgeInsets.only(left: 120.0, top: 10.0),
+                            padding: EdgeInsets.only(right: 3.0, left: 3.0),
                             alignment: Alignment.centerRight,
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.circular(3.0),
+                            ),
                             child: Text(
-                              'Weight: 130g',
+                              '3.4\u2605',
                               style: TextStyle(
-                                  fontSize: 14.0, color: Colors.black54),
-                            ),
+                                  color: Colors.white,
+                                  backgroundColor: Colors.green),
+                            )),
+                        Container(
+                          margin: EdgeInsets.only(left: 50.0),
+                          padding: const EdgeInsets.only(top: 10.0, left: 30.0),
+                          width: 200,
+                          child: Text(
+                            'Special Dosa',
+                            style: TextStyle(fontSize: 25.0),
                           ),
-                          Container(
-                            width: 230,
-                            alignment: Alignment.centerRight,
-                            margin: EdgeInsets.only(left: 20.0),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                    child: Padding(
-                                  padding: const EdgeInsets.only(left: 10.0),
-                                  child: Text(
-                                    'Lorem ipsum dolor sit amet, consectetur',
-                                    style: TextStyle(fontSize: 12.0),
-                                  ),
-                                )),
-                                SizedBox(
-                                  width: 8.0,
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 30.0),
+                          padding:
+                              const EdgeInsets.only(top: 5.0, bottom: 11.0),
+                          width: 200,
+                          alignment: Alignment.centerRight,
+                          child: Text(
+                            'Weight: 130g',
+                            style: TextStyle(
+                                fontSize: 14.0, color: Colors.black54),
+                          ),
+                        ),
+                        Container(
+                          width: 230,
+                          alignment: Alignment.centerRight,
+                          margin: EdgeInsets.only(left: 20.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                  child: Padding(
+                                padding: const EdgeInsets.only(left: 10.0),
+                                child: Text(
+                                  'Lorem ipsum dolor sit amet, consectetur',
+                                  style: TextStyle(fontSize: 12.0),
                                 ),
-                                Expanded(
+                              )),
+                              SizedBox(
+                                width: 8.0,
+                              ),
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    _subscribtionPlan();
+                                  },
                                   child: Container(
                                     width: double.maxFinite,
                                     height: 60,
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
-                                      color: Colors.green,
+                                      color: Color.fromRGBO(39, 211, 103, 1),
                                       borderRadius: BorderRadius.only(
                                           bottomRight: Radius.circular(30.0),
                                           topLeft: Radius.circular(30.0)),
@@ -259,22 +262,22 @@ class _StoreSectionState extends State<StoreSection> {
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      height: 150.0,
-                      child: Image.network(
-                          'https://i.pinimg.com/originals/b7/81/c7/b781c7b8494b87937b1033a3cc9e510f.png'),
-                    ),
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    height: 150.0,
+                    child: Image.network(
+                        'https://i.pinimg.com/originals/b7/81/c7/b781c7b8494b87937b1033a3cc9e510f.png'),
+                  ),
+                ],
               ),
-          ],
-        ),
+            ),
+        ],
       ),
     );
   }
@@ -302,8 +305,8 @@ class _StoreSectionState extends State<StoreSection> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       CircleAvatar(
-                        backgroundImage:
-                            NetworkImage('https://lh3.googleusercontent.com/proxy/OQzAuRqjs7FX5CdAVV6a4ZGlq60GsfAOnJmCxRPI08YFh1a1nSMhNM1gAeSe46B-CMsqzFitBjR-cat6IjrW4PLudt3S_Zp0aTPyQQoRTewhIp6oRmgG1u3MEC0GNqTnYBItYecQ0Q08iYBzOd2RzwxuASkOHeGcUWljExf525MyKFlFZP-N9j5Q3l1MFpPrObl4tTAHmj0xNuyBrZeUodE'),
+                        backgroundImage: NetworkImage(
+                            'https://lh3.googleusercontent.com/proxy/OQzAuRqjs7FX5CdAVV6a4ZGlq60GsfAOnJmCxRPI08YFh1a1nSMhNM1gAeSe46B-CMsqzFitBjR-cat6IjrW4PLudt3S_Zp0aTPyQQoRTewhIp6oRmgG1u3MEC0GNqTnYBItYecQ0Q08iYBzOd2RzwxuASkOHeGcUWljExf525MyKFlFZP-N9j5Q3l1MFpPrObl4tTAHmj0xNuyBrZeUodE'),
                         radius: 50.0,
                       ),
                       Text(
@@ -336,7 +339,6 @@ class _StoreSectionState extends State<StoreSection> {
                             'https://cdn-a.william-reed.com/var/wrbm_gb_food_pharma/storage/images/publications/food-beverage-nutrition/beveragedaily.com/article/2020/03/31/beverage-webinar-today-what-drinks-do-consumers-want/10866454-1-eng-GB/Beverage-webinar-today-What-drinks-do-consumers-want.jpg'),
                         radius: 50.0,
                       ),
-
                       Text(
                         'Beverages',
                         textAlign: TextAlign.center,
@@ -349,6 +351,79 @@ class _StoreSectionState extends State<StoreSection> {
               ],
             ),
         ],
+      ),
+    );
+  }
+
+  void _subscribtionPlan() {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
+        elevation: 0.0,
+        title: Center(
+          child: Text(
+            'Subscription Plan',
+            style: TextStyle(
+                color: Colors.red, fontSize: 20.0, fontWeight: FontWeight.bold),
+          ),
+        ),
+        content: Container(
+          height: 140.0,
+          child: Column(
+            children: [
+              Center(
+                child: Text(
+                  'Please Choose a plan to order this item?',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.0),
+                ),
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              Center(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: const Color.fromRGBO(105, 188, 69, 1),
+                  ),
+                  child: Container(
+                    width: 150.0,
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Delivery once',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => OrderOptionsScreen(
+                                  orderOptions: OrderOptions.DeliveryOnce,
+                                )));
+                  },
+                ),
+              ),
+              Center(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: const Color.fromRGBO(105, 188, 69, 1),
+                  ),
+                  child: Container(
+                    width: 150.0,
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Subscribe',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  onPressed: () {},
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

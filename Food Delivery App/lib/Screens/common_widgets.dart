@@ -64,7 +64,6 @@ Widget searchBar(String hintText, {bool trailing = false}) {
     margin: EdgeInsets.only(top: 20.0, left: 15.0, right: 15.0),
     height: 35.0,
     child: TextField(
-      autofocus: trailing,
       decoration: InputDecoration(
         contentPadding:
             EdgeInsets.only(top: hintText == 'Search Your Food' ? 0.0 : 10.0),

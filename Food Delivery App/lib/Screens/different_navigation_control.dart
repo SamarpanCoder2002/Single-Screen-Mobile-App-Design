@@ -24,9 +24,15 @@ class _DifferentNavigationControlState
       body: IndexedStack(
         index: this._screenIndex,
         children: [
-          StoreSection(pageName: PageName.StorePage,),
-          StoreSection(pageName: PageName.MenuPage,),
-          StoreSection(pageName: PageName.FlashSalePage,),
+          StoreSection(
+            pageName: PageName.StorePage,
+          ),
+          StoreSection(
+            pageName: PageName.MenuPage,
+          ),
+          StoreSection(
+            pageName: PageName.FlashSalePage,
+          ),
           FoodMenu(),
         ],
       ),
@@ -47,7 +53,7 @@ class _DifferentNavigationControlState
             label: 'Cafeteria', icon: Icon(Icons.local_restaurant_outlined)),
         BottomNavigationBarItem(
           label: 'Subscription',
-          icon: Icon(Icons.refresh_sharp),
+          icon: Icon(Icons.cached_outlined),
         ),
         BottomNavigationBarItem(
             label: 'Flash Sale', icon: Icon(Icons.flash_on_outlined)),
