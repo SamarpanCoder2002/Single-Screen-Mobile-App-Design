@@ -201,10 +201,13 @@ class _FoodMenuState extends State<FoodMenu> {
                 height: 100.0,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20.0),
-                    color: Colors.red,
                     image: DecorationImage(
+                      onError: (_, __) {
+                        Center(child: CircularProgressIndicator());
+                      },
                       image: NetworkImage(
-                          'https://savortheflavour.com/wp-content/uploads/2020/07/Blue-Lagoon-Mocktail-Tasty.jpg'),
+                        'https://savortheflavour.com/wp-content/uploads/2020/07/Blue-Lagoon-Mocktail-Tasty.jpg',
+                      ),
                     )),
               ),
               Container(

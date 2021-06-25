@@ -1,5 +1,7 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:customer/Screens/delivery_once_and_create_subscription_screen.dart';
 import 'package:customer/Screens/food_menu.dart';
+
 import 'package:customer/types.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,6 +20,35 @@ class StoreSection extends StatefulWidget {
 class _StoreSectionState extends State<StoreSection> {
   bool _vegOnlyToggle = false;
 
+  void _checkConnectivity() async {
+    final ConnectivityResult connectivityResult =
+        await Connectivity().checkConnectivity();
+
+    print('Connectivity Result: $connectivityResult');
+
+    if (connectivityResult == ConnectivityResult.none)
+      showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                elevation: 0.0,
+                title: Center(
+                  child: Text(
+                    'No Internet Connection',
+                    style: TextStyle(color: Colors.red),
+                  ),
+                ),
+              ));
+  }
+
+  @override
+  void initState() {
+    if (widget.pageName == PageName.StorePage) _checkConnectivity();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +58,7 @@ class _StoreSectionState extends State<StoreSection> {
         child: ListView(
           shrinkWrap: true,
           children: [
-            topPortion(),
+            topPortion(context),
             widget.pageName == PageName.StorePage
                 ? searchBar('Search for Stores')
                 : _sampleShow(),
@@ -272,7 +303,11 @@ class _StoreSectionState extends State<StoreSection> {
                   SizedBox(
                     height: 150.0,
                     child: Image.network(
-                        'https://i.pinimg.com/originals/b7/81/c7/b781c7b8494b87937b1033a3cc9e510f.png'),
+                      'https://i.pinimg.com/originals/b7/81/c7/b781c7b8494b87937b1033a3cc9e510f.png',
+                      errorBuilder: (_, __, ___) => Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -291,61 +326,85 @@ class _StoreSectionState extends State<StoreSection> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  width: 150.0,
-                  height: 150.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(50.0),
-                        topRight: Radius.circular(50.0),
-                        bottomLeft: Radius.circular(20.0),
-                        bottomRight: Radius.circular(20.0)),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      CircleAvatar(
-                        backgroundImage: NetworkImage(
-                            'https://lh3.googleusercontent.com/proxy/OQzAuRqjs7FX5CdAVV6a4ZGlq60GsfAOnJmCxRPI08YFh1a1nSMhNM1gAeSe46B-CMsqzFitBjR-cat6IjrW4PLudt3S_Zp0aTPyQQoRTewhIp6oRmgG1u3MEC0GNqTnYBItYecQ0Q08iYBzOd2RzwxuASkOHeGcUWljExf525MyKFlFZP-N9j5Q3l1MFpPrObl4tTAHmj0xNuyBrZeUodE'),
-                        radius: 50.0,
-                      ),
-                      Text(
-                        'Snacks',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 18.0, fontWeight: FontWeight.bold),
-                      ),
-                    ],
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => StoreSection(
+                                  pageName: PageName.MenuPage,
+                                )));
+                  },
+                  child: Container(
+                    width: 150.0,
+                    height: 150.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(50.0),
+                          topRight: Radius.circular(50.0),
+                          bottomLeft: Radius.circular(20.0),
+                          bottomRight: Radius.circular(20.0)),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        CircleAvatar(
+                          backgroundImage:
+                              ExactAssetImage('assets/images/fruits.png'),
+                          radius: 50.0,
+                        ),
+                        Text(
+                          'Fruits',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 18.0, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(
                   width: 20.0,
                 ),
-                Container(
-                  width: 150.0,
-                  height: 160.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(50.0),
-                        topRight: Radius.circular(50.0),
-                        bottomLeft: Radius.circular(20.0),
-                        bottomRight: Radius.circular(20.0)),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      CircleAvatar(
-                        backgroundImage: NetworkImage(
-                            'https://cdn-a.william-reed.com/var/wrbm_gb_food_pharma/storage/images/publications/food-beverage-nutrition/beveragedaily.com/article/2020/03/31/beverage-webinar-today-what-drinks-do-consumers-want/10866454-1-eng-GB/Beverage-webinar-today-What-drinks-do-consumers-want.jpg'),
-                        radius: 50.0,
-                      ),
-                      Text(
-                        'Beverages',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 18.0, fontWeight: FontWeight.bold),
-                      ),
-                    ],
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => StoreSection(
+                                  pageName: PageName.MenuPage,
+                                )));
+                  },
+                  child: Container(
+                    width: 150.0,
+                    height: 160.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(50.0),
+                          topRight: Radius.circular(50.0),
+                          bottomLeft: Radius.circular(20.0),
+                          bottomRight: Radius.circular(20.0)),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Colors.black12,
+                          backgroundImage: NetworkImage(
+                              'https://cdn-a.william-reed.com/var/wrbm_gb_food_pharma/storage/images/publications/food-beverage-nutrition/beveragedaily.com/article/2020/03/31/beverage-webinar-today-what-drinks-do-consumers-want/10866454-1-eng-GB/Beverage-webinar-today-What-drinks-do-consumers-want.jpg'),
+                          radius: 50.0,
+                          onBackgroundImageError: (_, __) {
+                            Center(child: CircularProgressIndicator());
+                          },
+                        ),
+                        Text(
+                          'Beverages',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 18.0, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -418,7 +477,14 @@ class _StoreSectionState extends State<StoreSection> {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => OrderOptionsScreen(
+                                  orderOptions: OrderOptions.Subscription,
+                                )));
+                  },
                 ),
               ),
             ],

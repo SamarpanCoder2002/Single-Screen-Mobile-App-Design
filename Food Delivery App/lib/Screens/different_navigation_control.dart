@@ -1,9 +1,8 @@
-import 'package:customer/Screens/store_section.dart';
+import 'package:customer/Screens/store_subs_flash_section.dart';
+
 import 'package:customer/types.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-
-import 'food_menu.dart';
 
 class DifferentNavigationControl extends StatefulWidget {
   const DifferentNavigationControl({Key? key}) : super(key: key);
@@ -16,6 +15,16 @@ class DifferentNavigationControl extends StatefulWidget {
 class _DifferentNavigationControlState
     extends State<DifferentNavigationControl> {
   int _screenIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +42,12 @@ class _DifferentNavigationControlState
           StoreSection(
             pageName: PageName.FlashSalePage,
           ),
-          FoodMenu(),
+          Center(
+            child: Text(
+              'Profile Section Not Given in Design Set',
+              style: TextStyle(fontSize: 18.0, color: Colors.grey),
+            ),
+          ),
         ],
       ),
     );

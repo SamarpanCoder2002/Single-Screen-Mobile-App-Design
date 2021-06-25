@@ -1,7 +1,8 @@
+import 'package:customer/Screens/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-Widget topPortion() {
+Widget topPortion(BuildContext context) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -53,7 +54,10 @@ Widget topPortion() {
           color: const Color.fromRGBO(94, 90, 91, 1),
           size: 30.0,
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (_) => CartScreen()));
+        },
       ),
     ],
   );

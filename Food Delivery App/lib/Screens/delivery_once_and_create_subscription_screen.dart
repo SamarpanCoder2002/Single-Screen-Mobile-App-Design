@@ -30,12 +30,35 @@ class _OrderOptionsScreenState extends State<OrderOptionsScreen> {
             _selectedFoodShow(),
             _itemQuantityChoice(
                 Icons.shopping_bag_outlined, 'Quantity per day'),
-            _itemQuantityChoice(
-                Icons.calendar_today_outlined, 'Choose date\n10-05-2021',
-                upperRow: false),
-            _couponCodeApply(),
-            _availableCouponOption(),
-            _billDetails(),
+            widget.orderOptions == OrderOptions.DeliveryOnce
+                ? _itemQuantityChoice(
+                    Icons.calendar_today_outlined, 'Choose date\n10-05-2021',
+                    upperRow: false)
+                : Padding(
+                    padding: const EdgeInsets.only(top: 20.0),
+                    child: _dateRow(),
+                  ),
+            widget.orderOptions == OrderOptions.DeliveryOnce
+                ? _couponCodeApply()
+                : Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: _weekDayShow(),
+                  ),
+            if (widget.orderOptions == OrderOptions.DeliveryOnce)
+              _availableCouponOption(),
+            if (widget.orderOptions == OrderOptions.DeliveryOnce)
+              _billDetails(),
+            if (widget.orderOptions == OrderOptions.Subscription)
+              Padding(
+                padding: const EdgeInsets.only(top: 30.0, bottom: 10.0),
+                child: _itemQuantityChoice(
+                    Icons.calendar_today_outlined, 'Start date\n10-05-2021',
+                    upperRow: false),
+              ),
+            if (widget.orderOptions == OrderOptions.Subscription)
+              _itemQuantityChoice(
+                  Icons.av_timer_outlined, 'Recharge/Top up\n30 Deliveries',
+                  upperRow: false),
           ],
         ),
       ),
@@ -54,7 +77,9 @@ class _OrderOptionsScreenState extends State<OrderOptionsScreen> {
             },
           ),
           Text(
-            'Deliver Once',
+            widget.orderOptions == OrderOptions.DeliveryOnce
+                ? 'Deliver Once'
+                : 'Create Subscription',
             style: TextStyle(fontSize: 20.0, fontFamily: 'Gotham'),
           )
         ],
@@ -73,7 +98,10 @@ class _OrderOptionsScreenState extends State<OrderOptionsScreen> {
           SizedBox(
             height: 150.0,
             child: Image.network(
-                'https://i.pinimg.com/originals/b7/81/c7/b781c7b8494b87937b1033a3cc9e510f.png'),
+                'https://i.pinimg.com/originals/b7/81/c7/b781c7b8494b87937b1033a3cc9e510f.png',
+                errorBuilder: (_, __, ___) => Center(
+                      child: CircularProgressIndicator(),
+                    )),
           ),
           Container(
             alignment: Alignment.centerLeft,
@@ -175,7 +203,7 @@ class _OrderOptionsScreenState extends State<OrderOptionsScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(
-            width: 150.0,
+            width: 200.0,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -239,7 +267,10 @@ class _OrderOptionsScreenState extends State<OrderOptionsScreen> {
                       ),
                     ],
                   ))
-              : Icon(Icons.arrow_forward_ios_outlined),
+              : Icon(
+                  Icons.arrow_forward_ios_outlined,
+                  size: 20.0,
+                ),
         ],
       ),
     );
@@ -253,12 +284,22 @@ class _OrderOptionsScreenState extends State<OrderOptionsScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Image.network(
-            'https://www.pngkey.com/png/detail/804-8048784_free-admission-png-clip-art-black-and-white.png',
+            'https://edit.org/img/blog/0nf-raffle-tickets-template-printable-free.jpg',
+            errorBuilder: (_, __, ___) =>
+                Center(child: CircularProgressIndicator()),
             width: 20.0,
+            color: Colors.black12,
           ),
-          Text(
-            'COUPON CODE',
-            style: TextStyle(color: Colors.black54, fontSize: 18.0),
+          SizedBox(
+            width: 160.0,
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                enabledBorder: null,
+                hintText: 'COUPON CODE',
+                hintStyle: TextStyle(color: Colors.black54, fontSize: 16.0),
+              ),
+            ),
           ),
           TextButton(
             style: TextButton.styleFrom(
@@ -333,6 +374,91 @@ class _OrderOptionsScreenState extends State<OrderOptionsScreen> {
                   ),
                 ],
               ),
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _dateRow() {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      child: Row(
+        children: [
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, top: 20.0),
+                child: Center(
+                  child: Stack(
+                    children: [
+                      Image.asset(
+                        'assets/images/up.png',
+                        width: 16.0,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Image.asset(
+                          'assets/images/down.png',
+                          width: 16.0,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 15.0, top: 20.0),
+                child: Text(
+                  'Repeat',
+                  style: TextStyle(fontFamily: 'Gotham', color: Colors.grey),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 15.0, top: 20.0),
+                child: Text(
+                  'DAILY',
+                  style: TextStyle(
+                      fontFamily: 'Gotham',
+                      color: const Color.fromRGBO(94, 224, 23, 1)),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _weekDayShow() {
+    List<String> _weekDay = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+    return Container(
+      margin: EdgeInsets.only(left: 50.0, top: 10.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          for (int i = 0; i < 7; i++)
+            Container(
+              width: 40.0,
+              height: 40.0,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: i == 5 || i == 6
+                    ? Colors.white
+                    : const Color.fromRGBO(94, 224, 23, 1),
+                border: i == 5 || i == 6
+                    ? Border.all(color: const Color.fromRGBO(94, 224, 23, 1))
+                    : null,
+              ),
+              child: Center(
+                  child: Text(
+                _weekDay[i],
+                style: TextStyle(
+                    color: i == 5 || i == 6
+                        ? const Color.fromRGBO(94, 224, 23, 1)
+                        : Colors.white,
+                    fontSize: 18.0),
+              )),
             ),
         ],
       ),
