@@ -16,7 +16,6 @@ class _FoodMenuState extends State<FoodMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: bottomNavigationBar(),
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
@@ -182,10 +181,10 @@ class _FoodMenuState extends State<FoodMenu> {
 
   Widget _foodList() {
     return Container(
-      margin: EdgeInsets.only(top: 20.0),
+      margin: EdgeInsets.only(top: 20.0, bottom: 100.0),
+      padding: EdgeInsets.only(bottom: 20.0),
       width: MediaQuery.of(context).size.width,
-      height: double.maxFinite,
-      color: Colors.red,
+      height: MediaQuery.of(context).size.height / 1.5,
       child: ListView.builder(
         itemCount: 10,
         itemBuilder: (context, index) => Container(

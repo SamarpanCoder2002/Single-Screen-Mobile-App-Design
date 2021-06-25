@@ -132,5 +132,8 @@ Widget bottomNavigationBar() {
         icon: Icon(Icons.person_outline_outlined),
       ),
     ],
+    onTap: (index){
+      print('Index is: $index');
+    },
   );
 }
