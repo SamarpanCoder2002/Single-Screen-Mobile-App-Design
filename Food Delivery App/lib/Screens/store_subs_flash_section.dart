@@ -302,8 +302,8 @@ class _StoreSectionState extends State<StoreSection> {
                   ),
                   SizedBox(
                     height: 150.0,
-                    child: Image.network(
-                      'https://i.pinimg.com/originals/b7/81/c7/b781c7b8494b87937b1033a3cc9e510f.png',
+                    child: Image.asset(
+                      'assets/images/dosa.png',
                       errorBuilder: (_, __, ___) => Center(
                         child: CircularProgressIndicator(),
                       ),
@@ -390,8 +390,8 @@ class _StoreSectionState extends State<StoreSection> {
                       children: [
                         CircleAvatar(
                           backgroundColor: Colors.black12,
-                          backgroundImage: NetworkImage(
-                              'https://cdn-a.william-reed.com/var/wrbm_gb_food_pharma/storage/images/publications/food-beverage-nutrition/beveragedaily.com/article/2020/03/31/beverage-webinar-today-what-drinks-do-consumers-want/10866454-1-eng-GB/Beverage-webinar-today-What-drinks-do-consumers-want.jpg'),
+                          backgroundImage: ExactAssetImage(
+                              'assets/images/beverage.jpg'),
                           radius: 50.0,
                           onBackgroundImageError: (_, __) {
                             Center(child: CircularProgressIndicator());

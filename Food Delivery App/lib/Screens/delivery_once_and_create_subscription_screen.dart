@@ -97,8 +97,8 @@ class _OrderOptionsScreenState extends State<OrderOptionsScreen> {
         children: [
           SizedBox(
             height: 150.0,
-            child: Image.network(
-                'https://i.pinimg.com/originals/b7/81/c7/b781c7b8494b87937b1033a3cc9e510f.png',
+            child: Image.asset(
+                'assets/images/dosa.png',
                 errorBuilder: (_, __, ___) => Center(
                       child: CircularProgressIndicator(),
                     )),
@@ -283,8 +283,8 @@ class _OrderOptionsScreenState extends State<OrderOptionsScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Image.network(
-            'https://edit.org/img/blog/0nf-raffle-tickets-template-printable-free.jpg',
+          Image.asset(
+            'assets/images/ticket.png',
             errorBuilder: (_, __, ___) =>
                 Center(child: CircularProgressIndicator()),
             width: 20.0,

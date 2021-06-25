@@ -205,8 +205,8 @@ class _FoodMenuState extends State<FoodMenu> {
                       onError: (_, __) {
                         Center(child: CircularProgressIndicator());
                       },
-                      image: NetworkImage(
-                        'https://savortheflavour.com/wp-content/uploads/2020/07/Blue-Lagoon-Mocktail-Tasty.jpg',
+                      image: ExactAssetImage(
+                        'assets/images/cocktail.jpg',
                       ),
                     )),
               ),

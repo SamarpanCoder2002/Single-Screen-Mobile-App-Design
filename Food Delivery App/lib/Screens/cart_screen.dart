@@ -225,8 +225,8 @@ class _CartScreenState extends State<CartScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Image.network(
-            'https://www.pngkey.com/png/detail/804-8048784_free-admission-png-clip-art-black-and-white.png',
+          Image.asset(
+            'assets/images/ticket.png',
             width: 20.0,
             errorBuilder: (_, __, ___) =>
                 Center(child: CircularProgressIndicator()),
