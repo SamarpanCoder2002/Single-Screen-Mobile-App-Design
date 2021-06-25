@@ -66,7 +66,8 @@ Widget searchBar(String hintText, {bool trailing = false}) {
     child: TextField(
       autofocus: trailing,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.only(top: 10.0),
+        contentPadding:
+            EdgeInsets.only(top: hintText == 'Search Your Food' ? 0.0 : 10.0),
         prefixIcon: Icon(
           Icons.search_outlined,
           color: const Color.fromRGBO(39, 211, 103, 1),
@@ -95,45 +96,25 @@ Widget searchBar(String hintText, {bool trailing = false}) {
                 ),
               )
             : null,
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
-          borderSide: BorderSide(color: Colors.grey),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
-          borderSide: BorderSide(color: Colors.grey),
-        ),
+        enabledBorder: hintText == 'Search Your Food'
+            ? UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey),
+              )
+            : OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.0),
+                borderSide: BorderSide(color: Colors.grey),
+              ),
+        focusedBorder: hintText == 'Search Your Food'
+            ? UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey),
+              )
+            : OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.0),
+                borderSide: BorderSide(color: Colors.grey),
+              ),
         hintText: hintText,
         hintStyle: TextStyle(color: Colors.grey, fontSize: 18.0),
       ),
     ),
-  );
-}
-
-Widget bottomNavigationBar() {
-  return BottomNavigationBar(
-    type: BottomNavigationBarType.fixed,
-    selectedItemColor: Colors.green,
-    unselectedItemColor: Colors.black,
-    selectedLabelStyle:
-        TextStyle(fontFamily: 'Gotham', fontWeight: FontWeight.w500),
-    showUnselectedLabels: false,
-    items: [
-      BottomNavigationBarItem(
-          label: 'Cafeteria', icon: Icon(Icons.local_restaurant_outlined)),
-      BottomNavigationBarItem(
-        label: 'Subscription',
-        icon: Icon(Icons.refresh_sharp),
-      ),
-      BottomNavigationBarItem(
-          label: 'Flash Sale', icon: Icon(Icons.flash_on_outlined)),
-      BottomNavigationBarItem(
-        label: 'Profile',
-        icon: Icon(Icons.person_outline_outlined),
-      ),
-    ],
-    onTap: (index){
-      print('Index is: $index');
-    },
   );
 }
