@@ -34,10 +34,14 @@ class _StoreSectionState extends State<StoreSection> {
                 ? _sampleShow()
                 : searchBar('Search Your Food'),
             _fourthRowInformation(),
-            _fifthRowInformation(),
+            if (widget.pageName == PageName.StorePage ||
+                widget.pageName == PageName.MenuPage)
+              _fifthRowInformation(),
             widget.pageName == PageName.StorePage
                 ? _foodShowCaseForStore()
-                : _foodShowCaseForMenu(),
+                : widget.pageName == PageName.MenuPage
+                    ? _foodShowCaseForMenu()
+                    : _flashSalePageCategory(),
           ],
         ),
       ),
@@ -75,39 +79,48 @@ class _StoreSectionState extends State<StoreSection> {
   Widget _fourthRowInformation() {
     return Container(
       margin: EdgeInsets.only(
-          left: 15.0,
+          left: widget.pageName == PageName.FlashSalePage?30.0:15.0,
           right: 15.0,
           top: widget.pageName == PageName.StorePage ? 0.0 : 10.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            widget.pageName == PageName.StorePage
-                ? '10 Stores around you'
-                : 'Menu',
-            style: TextStyle(
-                fontSize: widget.pageName == PageName.StorePage ? 18.0 : 30.0),
-          ),
-          Row(
-            children: [
-              Text(
-                'Veg only',
-                style: TextStyle(color: Colors.black54),
+      child: widget.pageName == PageName.FlashSalePage
+          ? Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: Text(
+                'Flash Sale',
+                style: TextStyle(fontSize: 20.0),
               ),
-              Switch(
-                value: this._vegOnlyToggle,
-                onChanged: (value) {
-                  if (mounted) {
-                    setState(() {
-                      this._vegOnlyToggle = value;
-                    });
-                  }
-                },
-              ),
-            ],
-          ),
-        ],
-      ),
+            )
+          : Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  widget.pageName == PageName.StorePage
+                      ? '10 Stores around you'
+                      : 'Menu',
+                  style: TextStyle(
+                      fontSize:
+                          widget.pageName == PageName.StorePage ? 18.0 : 30.0),
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Veg only',
+                      style: TextStyle(color: Colors.black54),
+                    ),
+                    Switch(
+                      value: this._vegOnlyToggle,
+                      onChanged: (value) {
+                        if (mounted) {
+                          setState(() {
+                            this._vegOnlyToggle = value;
+                          });
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
     );
   }
 
@@ -262,6 +275,80 @@ class _StoreSectionState extends State<StoreSection> {
               ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _flashSalePageCategory() {
+    return Container(
+      margin: EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+      child: Column(
+        children: [
+          for (int i = 0; i < 4; i++)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: 150.0,
+                  height: 150.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(50.0),
+                        topRight: Radius.circular(50.0),
+                        bottomLeft: Radius.circular(20.0),
+                        bottomRight: Radius.circular(20.0)),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      CircleAvatar(
+                        backgroundImage:
+                            NetworkImage('https://lh3.googleusercontent.com/proxy/OQzAuRqjs7FX5CdAVV6a4ZGlq60GsfAOnJmCxRPI08YFh1a1nSMhNM1gAeSe46B-CMsqzFitBjR-cat6IjrW4PLudt3S_Zp0aTPyQQoRTewhIp6oRmgG1u3MEC0GNqTnYBItYecQ0Q08iYBzOd2RzwxuASkOHeGcUWljExf525MyKFlFZP-N9j5Q3l1MFpPrObl4tTAHmj0xNuyBrZeUodE'),
+                        radius: 50.0,
+                      ),
+                      Text(
+                        'Snacks',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 18.0, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: 20.0,
+                ),
+                Container(
+                  width: 150.0,
+                  height: 160.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(50.0),
+                        topRight: Radius.circular(50.0),
+                        bottomLeft: Radius.circular(20.0),
+                        bottomRight: Radius.circular(20.0)),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      CircleAvatar(
+                        backgroundImage: NetworkImage(
+                            'https://cdn-a.william-reed.com/var/wrbm_gb_food_pharma/storage/images/publications/food-beverage-nutrition/beveragedaily.com/article/2020/03/31/beverage-webinar-today-what-drinks-do-consumers-want/10866454-1-eng-GB/Beverage-webinar-today-What-drinks-do-consumers-want.jpg'),
+                        radius: 50.0,
+                      ),
+
+                      Text(
+                        'Beverages',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 18.0, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+        ],
       ),
     );
   }

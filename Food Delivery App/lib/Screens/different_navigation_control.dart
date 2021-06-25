@@ -26,9 +26,7 @@ class _DifferentNavigationControlState
         children: [
           StoreSection(pageName: PageName.StorePage,),
           StoreSection(pageName: PageName.MenuPage,),
-          Center(
-            child: Text('${this._screenIndex}'),
-          ),
+          StoreSection(pageName: PageName.FlashSalePage,),
           FoodMenu(),
         ],
       ),

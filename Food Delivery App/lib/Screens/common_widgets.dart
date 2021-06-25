@@ -61,7 +61,7 @@ Widget topPortion() {
 
 Widget searchBar(String hintText, {bool trailing = false}) {
   return Container(
-    margin: const EdgeInsets.only(top: 20.0, left: 15.0, right: 15.0),
+    margin: EdgeInsets.only(top: 20.0, left: 15.0, right: 15.0),
     height: 35.0,
     child: TextField(
       autofocus: trailing,
