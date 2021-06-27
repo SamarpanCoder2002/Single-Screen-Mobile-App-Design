@@ -1,6 +1,15 @@
-# customer
+### <p align="center"> Food Delivery App UI </p>
 
-A new Flutter project.
+<p align="center">
+<img src="documents/1.jpg" width = 200 alt="App_UI">
+<img src="documents/2.jpg" width = 200 alt="App_UI">
+<img src="documents/3.jpg" width = 200 alt="App_UI">
+<img src="documents/4.jpg" width = 200 alt="App_UI">
+<img src="documents/5.jpg" width = 200 alt="App_UI">
+<img src="documents/6.jpg" width = 200 alt="App_UI">
+<img src="documents/7.jpg" width = 200 alt="App_UI">
+<img src="documents/8.jpg" width = 200 alt="App_UI">
+</p>
 
 ## Getting Started
 
