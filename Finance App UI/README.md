@@ -1,4 +1,4 @@
-# <p align="center"> Finance App UI Design</p>
+### <p align="center"> Finance App UI Design</p>
 
 ### <p align="center">Two UI Screen Design</p>
 
